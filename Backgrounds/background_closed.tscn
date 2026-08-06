@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbutmu71ym6eq"]
+
+[ext_resource type="Texture2D" uid="uid://dlvta03b5a0hs" path="res://Sprites/Game Backround - Forest - Closed.png" id="1_534t6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t3cl0"]
+distance = 7.0
+
+[node name="background_closed" type="StaticBody2D"]
+z_index = -5
+scale = Vector2(7.25, 7.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_534t6")
+
+[node name="world_bounday" type="CollisionShape2D" parent="."]
+position = Vector2(-80.6897, 45.5172)
+shape = SubResource("WorldBoundaryShape2D_t3cl0")
+
+[node name="world_bounday2" type="CollisionShape2D" parent="."]
+position = Vector2(-80.4138, 46.2069)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_t3cl0")
+
+[node name="world_bounday3" type="CollisionShape2D" parent="."]
+position = Vector2(75.3103, -45.5172)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_t3cl0")
+
+[node name="world_bounday4" type="CollisionShape2D" parent="."]
+position = Vector2(80.5517, -40.1379)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_t3cl0")

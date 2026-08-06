@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://drqxjvlkgyo5d"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_8bv1p"]
+[ext_resource type="Texture2D" uid="uid://dyktju4u1eb46" path="res://Sprites/Menu_background.png" id="1_w73ob"]
+[ext_resource type="Texture2D" uid="uid://dewo5yjkj01i8" path="res://Sprites/Title_game.png" id="2_2685h"]
+[ext_resource type="Texture2D" uid="uid://dbxdnbqbfloqa" path="res://Sprites/play_button.png" id="3_l05j4"]
+
+[node name="start_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8bv1p")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("1_w73ob")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(573, 119)
+scale = Vector2(3, 3)
+texture = ExtResource("2_2685h")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 509.0
+offset_top = 222.0
+offset_right = 645.0
+offset_bottom = 294.0
+icon = ExtResource("3_l05j4")
+icon_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

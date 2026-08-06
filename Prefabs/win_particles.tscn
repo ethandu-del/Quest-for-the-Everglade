@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bbf1375nti6of"]
+
+[node name="win_particles" type="CPUParticles2D"]
+emitting = false
+amount = 100
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.55
+spread = 180.0
+gravity = Vector2(0, 100)
+initial_velocity_min = 100.0
+initial_velocity_max = 120.0
+angle_max = 180.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(0.913725, 0.67451, 0.0509804, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0

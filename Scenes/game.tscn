@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv1jmasv7bttn"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_eg12b"]
+[ext_resource type="PackedScene" uid="uid://b63pkmjbkih2e" path="res://Backgrounds/background_open.tscn" id="2_v74lq"]
+[ext_resource type="Texture2D" uid="uid://ctkw3xmx84k8l" path="res://Sprites/healthbar_back (2).png" id="3_6oign"]
+[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="3_dkbdu"]
+[ext_resource type="Texture2D" uid="uid://2ihkmff77otl" path="res://Sprites/Healthbar.png" id="4_t8mbq"]
+[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="5_50cq8"]
+[ext_resource type="PackedScene" uid="uid://s4rgn48eo8g" path="res://Prefabs/pause_menu.tscn" id="7_kt2uo"]
+[ext_resource type="PackedScene" uid="uid://diadiid02yrwf" path="res://Backgrounds/background_open_finish.tscn" id="8_1ddro"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lm3mc"]
+distance = 10.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_eg12b")
+
+[node name="background_open" parent="." instance=ExtResource("2_v74lq")]
+metadata/_edit_lock_ = true
+
+[node name="background_open2" parent="." instance=ExtResource("2_v74lq")]
+position = Vector2(0, -652)
+
+[node name="player_spawn" type="Marker2D" parent="."]
+position = Vector2(0, 270)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.03374, 1.04412)
+script = ExtResource("3_dkbdu")
+
+[node name="Health_bar" type="TextureProgressBar" parent="Camera2D"]
+offset_left = -554.298
+offset_top = -309.351
+offset_right = -261.298
+offset_bottom = -269.351
+max_value = 5.0
+nine_patch_stretch = true
+stretch_margin_left = 10
+stretch_margin_top = 10
+stretch_margin_right = 10
+stretch_margin_bottom = 10
+texture_under = ExtResource("3_6oign")
+texture_progress = ExtResource("4_t8mbq")
+script = ExtResource("5_50cq8")
+
+[node name="Pause_menu" parent="Camera2D" instance=ExtResource("7_kt2uo")]
+visible = false
+offset_left = -143.169
+offset_top = -131.211
+offset_right = -143.169
+offset_bottom = -131.211
+scale = Vector2(4, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 336)
+shape = SubResource("WorldBoundaryShape2D_lm3mc")
+
+[node name="background_open3" parent="." instance=ExtResource("2_v74lq")]
+position = Vector2(0, -1304)
+
+[node name="background_open4" parent="." instance=ExtResource("2_v74lq")]
+position = Vector2(0, -1956)
+
+[node name="background_open_finish" parent="." instance=ExtResource("8_1ddro")]
+position = Vector2(0, -2608)

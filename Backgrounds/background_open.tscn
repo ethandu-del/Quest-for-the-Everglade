@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://b63pkmjbkih2e"]
+
+[ext_resource type="Script" path="res://Scripts/background_open.gd" id="1_ei4aj"]
+[ext_resource type="Texture2D" uid="uid://p2thvigrmnt8" path="res://Sprites/Game Background - Forest - 2_doors.png" id="1_emhym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeyki"]
+size = Vector2(69.7451, 8)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t3cl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hokcl"]
+size = Vector2(25.4828, 0.999997)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rar3w"]
+size = Vector2(21.1034, 1.34483)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtp04"]
+size = Vector2(24.9224, 8.89655)
+
+[node name="background_open" type="StaticBody2D"]
+z_index = -5
+scale = Vector2(7.25, 7.25)
+script = ExtResource("1_ei4aj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_emhym")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-41.375, -41)
+shape = SubResource("RectangleShape2D_eeyki")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(41, -41)
+shape = SubResource("RectangleShape2D_eeyki")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
+position = Vector2(44.8276, 41.1034)
+shape = SubResource("RectangleShape2D_eeyki")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="."]
+position = Vector2(-44.8516, 41.1034)
+shape = SubResource("RectangleShape2D_eeyki")
+
+[node name="world_bounday2" type="CollisionShape2D" parent="."]
+position = Vector2(-73.5172, 46.3448)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_t3cl0")
+
+[node name="world_bounday4" type="CollisionShape2D" parent="."]
+position = Vector2(73.3793, -44)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_t3cl0")
+
+[node name="North_door_entry" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="North_door_entry"]
+position = Vector2(0.137931, -49.3793)
+shape = SubResource("RectangleShape2D_hokcl")
+
+[node name="South_door" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="South_door"]
+position = Vector2(-0.413793, 49.2586)
+shape = SubResource("RectangleShape2D_rar3w")
+
+[node name="Enemy_spawn" type="Area2D" parent="."]
+position = Vector2(-2.75862, 19.8621)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_spawn"]
+position = Vector2(-7.77691, 5.84588)
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_gtp04")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy_spawn"]
+position = Vector2(13.2414, 6.06897)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_gtp04")
+
+[connection signal="body_entered" from="North_door_entry" to="." method="_on_north_door_entry_body_entered"]
+[connection signal="body_entered" from="South_door" to="." method="_on_south_door_body_entered"]
+[connection signal="body_entered" from="Enemy_spawn" to="." method="_on_enemy_spawn_body_entered"]

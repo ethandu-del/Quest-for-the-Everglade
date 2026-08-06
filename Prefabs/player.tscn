@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://duh1ehlii818k"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_67fvc"]
+[ext_resource type="Texture2D" uid="uid://b63aov8li3egh" path="res://Sprites/pixilart-drawing (1).png" id="2_mnapb"]
+[ext_resource type="PackedScene" uid="uid://c3ptlcgu7n1f0" path="res://Prefabs/bow.tscn" id="3_q5erv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eys3f"]
+atlas = ExtResource("2_mnapb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y18tp"]
+atlas = ExtResource("2_mnapb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewdvl"]
+atlas = ExtResource("2_mnapb")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56kau"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eys3f")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y18tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewdvl")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pq4hu"]
+radius = 5.8
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(5, 5)
+script = ExtResource("1_67fvc")
+weapon_hold_distance = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_56kau")
+animation = &"Walk"
+frame = 1
+frame_progress = 0.122612
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pq4hu")
+
+[node name="Bow" parent="." instance=ExtResource("3_q5erv")]
+position = Vector2(21.5, 0)
+
+[node name="WeaponPivot" type="Marker2D" parent="."]
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="shoot" from="." to="Bow" method="_on_player_shoot"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_timer_timeout"]
