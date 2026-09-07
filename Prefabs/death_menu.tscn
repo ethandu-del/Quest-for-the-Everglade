@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpi1ksfggkpch"]
+
+[ext_resource type="Script" path="res://Scripts/death_menu.gd" id="1_nxqtq"]
+[ext_resource type="Texture2D" uid="uid://dkyuxfb0jhr3g" path="res://Sprites/death_menu.png" id="2_1f5ju"]
+[ext_resource type="Shader" path="res://pause_menu.gdshader" id="2_w0sb1"]
+[ext_resource type="Texture2D" uid="uid://cpi8a1oospvrg" path="res://Sprites/deathmenu_menu.png" id="3_y0ic0"]
+[ext_resource type="Texture2D" uid="uid://xqwcvnbymsf7" path="res://Sprites/deathmenu_respawn.png" id="4_gwq6c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67q8e"]
+shader = ExtResource("2_w0sb1")
+shader_parameter/amount = 3.0
+
+[node name="death_menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nxqtq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_67q8e")
+layout_mode = 0
+offset_left = -728.0
+offset_top = -478.0
+offset_right = -354.0
+offset_bottom = -80.0
+scale = Vector2(4.58764, 2.47736)
+color = Color(0.909804, 0.341176, 0.290196, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
+position = Vector2(75, -78)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_1f5ju")
+
+[node name="respawn_button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_gwq6c")
+
+[node name="menu_button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_y0ic0")
+icon_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/respawn_button" to="." method="_on_respawn_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/menu_button" to="." method="_on_menu_button_pressed"]

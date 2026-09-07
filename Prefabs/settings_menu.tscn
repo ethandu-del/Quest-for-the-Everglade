@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=3 uid="uid://3f0q87kx84"]
+
+[ext_resource type="Script" path="res://Scripts/settings_menu.gd" id="1_xmpgt"]
+[ext_resource type="Texture2D" uid="uid://dyktju4u1eb46" path="res://Sprites/Menu_background.png" id="2_ikbic"]
+
+[node name="Settings_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xmpgt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("2_ikbic")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 63.0
+offset_right = 576.0
+offset_bottom = 215.0
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="settings_menu_label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings Menu"
+horizontal_alignment = 1
+
+[node name="mater_volume_label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="volume_slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="mater_volume_label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SFX_slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="mater_volume_label3" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="music_slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="difficulty_label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Difficulty:"
+horizontal_alignment = 1
+
+[node name="difficulty_display" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Easy
+"
+horizontal_alignment = 1
+
+[node name="difficulty_slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 4.0
+value = 1.0
+
+[node name="back_button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to Main Menu"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/volume_slider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFX_slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/difficulty_slider" to="." method="_on_difficulty_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/back_button" to="." method="_on_back_button_pressed"]

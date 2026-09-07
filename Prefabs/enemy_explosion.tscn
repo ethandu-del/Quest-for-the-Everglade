@@ -11,6 +11,7 @@ colors = PackedColorArray(0.520269, 1.49807e-06, 3.36915e-07, 1, 1, 0.335514, 0.
 colors = PackedColorArray(0.521569, 0, 0, 1, 1, 0.337255, 0.270588, 1)
 
 [node name="enemy_explosion" type="CPUParticles2D"]
+scale = Vector2(0.5, 0.5)
 emitting = false
 amount = 50
 lifetime = 0.4

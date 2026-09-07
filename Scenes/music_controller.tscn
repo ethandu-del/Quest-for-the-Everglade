@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c44gdbonf6sfn"]
+
+[ext_resource type="AudioStream" uid="uid://c14vupyfc1flp" path="res://Audio/Monkeys-Spinning-Monkeys(chosic.com).mp3" id="1_7bajn"]
+[ext_resource type="Script" path="res://Scripts/music_controller.gd" id="1_mkjeb"]
+
+[node name="MusicController" type="Node"]
+process_mode = 3
+script = ExtResource("1_mkjeb")
+
+[node name="Music_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_7bajn")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+
+[node name="SFX_player" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+volume_db = -10.0
+bus = &"SFX"

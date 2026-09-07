@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bv1jmasv7bttn"]
+[gd_scene load_steps=12 format=3 uid="uid://bv1jmasv7bttn"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_eg12b"]
 [ext_resource type="PackedScene" uid="uid://b63pkmjbkih2e" path="res://Backgrounds/background_open.tscn" id="2_v74lq"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Scripts/health_bar.gd" id="5_50cq8"]
 [ext_resource type="PackedScene" uid="uid://s4rgn48eo8g" path="res://Prefabs/pause_menu.tscn" id="7_kt2uo"]
 [ext_resource type="PackedScene" uid="uid://diadiid02yrwf" path="res://Backgrounds/background_open_finish.tscn" id="8_1ddro"]
+[ext_resource type="PackedScene" uid="uid://bpi1ksfggkpch" path="res://Prefabs/death_menu.tscn" id="8_6y4f1"]
+[ext_resource type="PackedScene" uid="uid://c7yv4ida5qrtn" path="res://Scenes/finish_scene.tscn" id="11_ltdlt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lm3mc"]
 distance = 10.0
@@ -43,6 +45,20 @@ texture_under = ExtResource("3_6oign")
 texture_progress = ExtResource("4_t8mbq")
 script = ExtResource("5_50cq8")
 
+[node name="Stamina_bar" type="TextureProgressBar" parent="Camera2D"]
+offset_left = 263.122
+offset_top = -309.351
+offset_right = 556.122
+offset_bottom = -269.351
+max_value = 5.0
+nine_patch_stretch = true
+stretch_margin_left = 10
+stretch_margin_top = 10
+stretch_margin_right = 10
+stretch_margin_bottom = 10
+texture_under = ExtResource("3_6oign")
+texture_progress = ExtResource("4_t8mbq")
+
 [node name="Pause_menu" parent="Camera2D" instance=ExtResource("7_kt2uo")]
 visible = false
 offset_left = -143.169
@@ -50,6 +66,26 @@ offset_top = -131.211
 offset_right = -143.169
 offset_bottom = -131.211
 scale = Vector2(4, 4)
+
+[node name="death_menu" parent="Camera2D" instance=ExtResource("8_6y4f1")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -152.843
+offset_top = -22.0281
+offset_right = -152.843
+offset_bottom = -22.0281
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(2, 2)
+
+[node name="Finish_scene" parent="Camera2D" instance=ExtResource("11_ltdlt")]
+visible = false
+offset_left = -93.834
+offset_top = -63.2111
+offset_right = -93.834
+offset_bottom = -63.2111
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

@@ -7,10 +7,11 @@ extends CharacterBody2D
 var knockback_velocity: Vector2 = Vector2.ZERO
 var health = max_health
 
-var speed = randi_range(35, 45)
+var speed = 40
 
 func _process(delta: float) -> void:
 	randomize()
+	var speed = randi_range(35, 45)
 
 func take_damage():
 	health = health - 1

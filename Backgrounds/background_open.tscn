@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b63pkmjbkih2e"]
+[gd_scene load_steps=9 format=3 uid="uid://b63pkmjbkih2e"]
 
 [ext_resource type="Script" path="res://Scripts/background_open.gd" id="1_ei4aj"]
 [ext_resource type="Texture2D" uid="uid://p2thvigrmnt8" path="res://Sprites/Game Background - Forest - 2_doors.png" id="1_emhym"]
@@ -16,6 +16,9 @@ size = Vector2(21.1034, 1.34483)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtp04"]
 size = Vector2(24.9224, 8.89655)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f6id"]
+size = Vector2(143.517, 45.4483)
 
 [node name="background_open" type="StaticBody2D"]
 z_index = -5
@@ -78,6 +81,13 @@ position = Vector2(13.2414, 6.06897)
 rotation = 0.785398
 shape = SubResource("RectangleShape2D_gtp04")
 
+[node name="Enemy_spawn_area" type="Area2D" parent="."]
+
+[node name="Enemy_spawn_area_collision" type="CollisionShape2D" parent="Enemy_spawn_area"]
+position = Vector2(-0.172414, -14.3103)
+shape = SubResource("RectangleShape2D_3f6id")
+
 [connection signal="body_entered" from="North_door_entry" to="." method="_on_north_door_entry_body_entered"]
 [connection signal="body_entered" from="South_door" to="." method="_on_south_door_body_entered"]
 [connection signal="body_entered" from="Enemy_spawn" to="." method="_on_enemy_spawn_body_entered"]
+[connection signal="body_entered" from="Enemy_spawn_area" to="." method="_on_enemy_spawn_area_body_entered"]

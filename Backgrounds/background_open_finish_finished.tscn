@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://do3eucylywgcf"]
+
+[ext_resource type="Texture2D" uid="uid://bqpcdhvaxh3ib" path="res://Sprites/Game Background - Forest - south_door.png" id="1_gg4h8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uoaum"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeyki"]
+size = Vector2(69.7451, 8)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t3cl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rar3w"]
+size = Vector2(21.1034, 1.34483)
+
+[node name="background_open_finish_finished" type="StaticBody2D"]
+z_index = -5
+scale = Vector2(7.25, 7.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gg4h8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.98023e-08, -38.4828)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_uoaum")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(-44.9655, 41.1034)
+shape = SubResource("RectangleShape2D_eeyki")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+position = Vector2(44.8276, 40.9655)
+shape = SubResource("RectangleShape2D_eeyki")
+
+[node name="world_bounday2" type="CollisionShape2D" parent="."]
+position = Vector2(-73.5172, 46.3448)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_t3cl0")
+
+[node name="world_bounday4" type="CollisionShape2D" parent="."]
+position = Vector2(73.3793, -44)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_t3cl0")
+
+[node name="South_door" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="South_door"]
+position = Vector2(-0.413793, 49.2586)
+shape = SubResource("RectangleShape2D_rar3w")
+
+[connection signal="body_entered" from="South_door" to="." method="_on_south_door_body_entered"]

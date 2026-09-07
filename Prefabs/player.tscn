@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://duh1ehlii818k"]
+[gd_scene load_steps=10 format=3 uid="uid://duh1ehlii818k"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_67fvc"]
 [ext_resource type="Texture2D" uid="uid://b63aov8li3egh" path="res://Sprites/pixilart-drawing (1).png" id="2_mnapb"]
 [ext_resource type="PackedScene" uid="uid://c3ptlcgu7n1f0" path="res://Prefabs/bow.tscn" id="3_q5erv"]
+[ext_resource type="AudioStream" uid="uid://ckke84sp2tgra" path="res://Audio/Arrow_shoot_sound.mp3" id="4_arxgb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eys3f"]
 atlas = ExtResource("2_mnapb")
@@ -65,5 +66,15 @@ position = Vector2(21.5, 0)
 wait_time = 0.5
 one_shot = true
 
-[connection signal="shoot" from="." to="Bow" method="_on_player_shoot"]
+[node name="dash_timer" type="Timer" parent="."]
+
+[node name="dash_cooldown" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="shoot_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_arxgb")
+volume_db = 20.0
+
 [connection signal="timeout" from="shoot_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]

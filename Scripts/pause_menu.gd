@@ -3,7 +3,12 @@ extends Control
 @onready var main = $/root/Game
 
 func _on_resume_pressed() -> void:
+	MusicController.play_sfx("res://Audio/button_press_sound.mp3")
 	main.pauseMenu()
 
 func _on_quit_pressed() -> void:
-	get_tree().quit()
+	Engine.time_scale = 1
+	MusicController.play_sfx("res://Audio/button_press_sound.mp3")
+	MusicController.play_track("res://Audio/Monkeys-Spinning-Monkeys(chosic.com).mp3")
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")

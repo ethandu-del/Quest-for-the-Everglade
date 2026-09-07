@@ -11,7 +11,9 @@ var bullet_scene = preload("res://Scenes/bullet.tscn")
 @onready var animation := $AnimatedSprite2D
 @onready var healthbar = $/root/Game/Camera2D/Health_bar
 @onready var camera = $/root/Game/Camera2D
+@onready var game = $/root/Game
 
+@onready var shoot_sound = $shoot_sound
 
 @export var friction: float = 800
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -19,7 +21,6 @@ var knockback_velocity: Vector2 = Vector2.ZERO
 @export var weapon_hold_distance: float = 30
 
 var can_shoot: bool = true
-signal shoot
 
 func _process(delta: float) -> void:
 	var mouse_direction := weapon_pivot.global_position.direction_to(get_global_mouse_position())
@@ -47,6 +48,9 @@ func player_movement():
 	
 	return player_velocity
 
+		
+		
+
 func apply_knockback(from_position: Vector2, force: float) -> void:
 	var direction = (global_position - from_position).normalized()
 	knockback_velocity = direction * force
@@ -61,9 +65,9 @@ func _physics_process(delta: float) -> void:
 	velocity = normal_velocity + knockback_velocity
 	
 	if Input.is_action_just_pressed("shoot") and can_shoot:
+		shoot_sound.playing = true
 		can_shoot = false
 		camera.add_trauma(0.2)
-		shoot.emit
 		shoot_timer.start()
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = bow.global_position
@@ -72,20 +76,35 @@ func _physics_process(delta: float) -> void:
 		$/root/Game.add_child(bullet)
 		$/root/Game.move_child(bullet, 1)
 	
-	move_and_slide()
+	if Input.is_action_just_pressed("Debug_add_health"):
+		health += 1
+		healthbar.change_value(health)
+		print(health)
 	
-	if health == 0 or health < 0:
-		global_position = Vector2(1000, 1000)
-		Engine.time_scale = 0
+	if Input.is_action_pressed("dash") and camera.current_stamina > 0:
+		speed = 400
+	else:
+		speed = 200
+	
+	move_and_slide()
 
 
 func _on_timer_timeout() -> void:
 	can_shoot = true
 
 func take_damage():
+	MusicController.play_sfx("res://Audio/ouchies_sfx.mp3")
 	health = health - 1
 	camera.add_trauma(0.2)
 	healthbar.change_value(health)
 	modulate = Color(1, 0, 0)
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.2)
+	
+	if health == 0 or health < 0:
+		MusicController.play_track("res://Audio/death_sound.mp3")
+		game.deathMenu()
+		self.visible = false
+		self.set_process(false)
+		self.set_physics_process(false)
+		print("dead")
