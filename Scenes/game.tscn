@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bv1jmasv7bttn"]
+[gd_scene load_steps=13 format=3 uid="uid://bv1jmasv7bttn"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_eg12b"]
 [ext_resource type="PackedScene" uid="uid://b63pkmjbkih2e" path="res://Backgrounds/background_open.tscn" id="2_v74lq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2ihkmff77otl" path="res://Sprites/Healthbar.png" id="4_t8mbq"]
 [ext_resource type="Script" path="res://Scripts/health_bar.gd" id="5_50cq8"]
 [ext_resource type="PackedScene" uid="uid://s4rgn48eo8g" path="res://Prefabs/pause_menu.tscn" id="7_kt2uo"]
+[ext_resource type="Texture2D" uid="uid://d0jnh1nkfjywd" path="res://Sprites/Stamina_bar.png" id="7_p70i4"]
 [ext_resource type="PackedScene" uid="uid://diadiid02yrwf" path="res://Backgrounds/background_open_finish.tscn" id="8_1ddro"]
 [ext_resource type="PackedScene" uid="uid://bpi1ksfggkpch" path="res://Prefabs/death_menu.tscn" id="8_6y4f1"]
 [ext_resource type="PackedScene" uid="uid://c7yv4ida5qrtn" path="res://Scenes/finish_scene.tscn" id="11_ltdlt"]
@@ -57,7 +58,7 @@ stretch_margin_top = 10
 stretch_margin_right = 10
 stretch_margin_bottom = 10
 texture_under = ExtResource("3_6oign")
-texture_progress = ExtResource("4_t8mbq")
+texture_progress = ExtResource("7_p70i4")
 
 [node name="Pause_menu" parent="Camera2D" instance=ExtResource("7_kt2uo")]
 visible = false

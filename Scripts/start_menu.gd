@@ -1,7 +1,5 @@
 extends Control
 
-@onready var button_press_audio = $button_press_sfx
-
 func _on_button_pressed() -> void:
 	MusicController.play_sfx("res://Audio/button_press_sound.mp3")
 	MusicController.play_track("res://Audio/atlasaudio-adventure-adventure-music-576610.mp3")
@@ -21,4 +19,9 @@ func _on_quit_button_pressed() -> void:
 
 func _on_tutorial_button_pressed() -> void:
 	MusicController.play_sfx("res://Audio/button_press_sound.mp3")
-	print("doesnt exist yet")
+	get_tree().change_scene_to_file("res://Prefabs/tutorial.tscn")
+
+
+func _on_button_2_pressed() -> void:
+	MusicController.play_sfx("res://Audio/button_press_sound.mp3")
+	get_tree().change_scene_to_file("res://Prefabs/controls_menu.tscn")

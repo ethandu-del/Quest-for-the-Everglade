@@ -24,6 +24,8 @@ var level_no: int = 1
 
 var budget: int = 0
 
+var extradiff: int = 0
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -110,4 +112,5 @@ func level_budget():
 		
 		4: budget = 10
 	
+	budget += GameManager.extradiff
 	return budget

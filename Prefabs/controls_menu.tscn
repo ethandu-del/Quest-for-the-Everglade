@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnt8xhkr1qlog"]
+
+[ext_resource type="Script" path="res://Scripts/controls_menu.gd" id="1_aks43"]
+[ext_resource type="Texture2D" uid="uid://dyktju4u1eb46" path="res://Sprites/Menu_background.png" id="2_dbmmx"]
+[ext_resource type="FontFile" uid="uid://d02mvqgofim7" path="res://Fonts/Cairopixel.otf" id="2_flwar"]
+
+[node name="Controls_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_aks43")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574, 326)
+scale = Vector2(2.4375, 2.49259)
+texture = ExtResource("2_dbmmx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 106.0
+offset_right = 920.0
+offset_bottom = 342.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_flwar")
+theme_override_font_sizes/font_size = 50
+text = "Controls:
+* Movement: WASD or the Arrow keys *
+* Shoot Arrow: Left Mouse Click *
+* Sprint: Spacebar *
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

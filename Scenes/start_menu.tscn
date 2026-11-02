@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://drqxjvlkgyo5d"]
+[gd_scene load_steps=9 format=3 uid="uid://drqxjvlkgyo5d"]
 
 [ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_8bv1p"]
 [ext_resource type="Texture2D" uid="uid://dyktju4u1eb46" path="res://Sprites/Menu_background.png" id="1_w73ob"]
 [ext_resource type="Texture2D" uid="uid://dewo5yjkj01i8" path="res://Sprites/Title_game.png" id="2_2685h"]
 [ext_resource type="Texture2D" uid="uid://dbxdnbqbfloqa" path="res://Sprites/play_button.png" id="3_l05j4"]
 [ext_resource type="Texture2D" uid="uid://dmr3ynu8suwmm" path="res://Sprites/menu_settings_button (2).png" id="5_ftyvh"]
+[ext_resource type="Texture2D" uid="uid://wlqb3ka2vbo7" path="res://Sprites/controls_button.png" id="6_ud3h5"]
 [ext_resource type="Texture2D" uid="uid://bpaxqrce0vbu1" path="res://Sprites/menu_tutorial_button.png" id="6_up3nb"]
 [ext_resource type="Texture2D" uid="uid://bg5l5qhacxyae" path="res://Sprites/menu_quit_button.png" id="7_7j4me"]
 
@@ -46,6 +47,10 @@ icon_alignment = 1
 layout_mode = 2
 icon = ExtResource("5_ftyvh")
 
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("6_ud3h5")
+
 [node name="tutorial_button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 icon = ExtResource("6_up3nb")
@@ -56,5 +61,6 @@ icon = ExtResource("7_7j4me")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/tutorial_button" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]

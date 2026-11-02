@@ -7,7 +7,7 @@ const SPORE = preload("res://Prefabs/spore.tscn")
 var is_shooting_cooldown: bool = false
 
 @export var speed: float = 50.0
-@export var attack_range: float = 400.0  # Distance at which enemy stops and shoots
+@export var attack_range: float = 400.0
 
 
 @export var max_health: int = 4
@@ -22,23 +22,23 @@ func _physics_process(delta: float) -> void:
 	
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, friction * delta)
 	
+	if velocity.x != 0 or velocity.y != 0:
+		anim.play("Walk")
+	
 	if not player:
 		velocity = knockback_velocity
 		move_and_slide()
 		return
 
-	# Calculate distance and direction to the player
 	var distance_to_player = global_position.distance_to(player.global_position)
 	var direction = (player.global_position - global_position).normalized()
 
 	var move_velocity = Vector2.ZERO
 
 	if distance_to_player > attack_range:
-		# Player is too far, move toward them
 		move_velocity = direction * speed
 		random_move_direction = Vector2.ZERO
 	else:
-		# Player is in range, stop moving and try to shoot
 		if random_move_direction == Vector2.ZERO:
 			pick_random_direction()
 		move_velocity = random_move_direction * strafe_speed

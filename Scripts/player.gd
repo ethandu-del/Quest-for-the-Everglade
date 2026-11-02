@@ -14,6 +14,7 @@ var bullet_scene = preload("res://Scenes/bullet.tscn")
 @onready var game = $/root/Game
 
 @onready var shoot_sound = $shoot_sound
+@onready var damage_sound = $damage_sound
 
 @export var friction: float = 800
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -28,7 +29,7 @@ func _process(delta: float) -> void:
 	bow.scale.y = 0.5 if mouse_direction.x > 0 else -0.5
 	bow.show_behind_parent = mouse_direction.y < 0
 	bow.look_at(get_global_mouse_position())
-
+	
 func player_movement():
 	var player_direction = Vector2.ZERO
 	
@@ -81,8 +82,8 @@ func _physics_process(delta: float) -> void:
 		healthbar.change_value(health)
 		print(health)
 	
-	if Input.is_action_pressed("dash") and camera.current_stamina > 0:
-		speed = 400
+	if Input.is_action_pressed("dash") and camera.current_stamina > 0 and not camera.is_exhausted:
+		speed = 300
 	else:
 		speed = 200
 	
@@ -93,7 +94,7 @@ func _on_timer_timeout() -> void:
 	can_shoot = true
 
 func take_damage():
-	MusicController.play_sfx("res://Audio/ouchies_sfx.mp3")
+	damage_sound.playing = true
 	health = health - 1
 	camera.add_trauma(0.2)
 	healthbar.change_value(health)

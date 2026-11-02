@@ -433,7 +433,7 @@ radius = 23.0217
 radius = 30.3407
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4uc50"]
-size = Vector2(194.833, 104.667)
+size = Vector2(236.75, 140)
 
 [node name="stone_boss" type="CharacterBody2D" groups=["boss", "enemies"]]
 scale = Vector2(3, 3)
@@ -455,7 +455,7 @@ position = Vector2(-0.333333, 0)
 shape = SubResource("CircleShape2D_wnt7u")
 
 [node name="shoot_cooldown" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.5
 
 [node name="mini_enemy_spawn_area" type="Area2D" parent="."]
 

@@ -2,6 +2,8 @@ extends Node
 
 var difficulty_level: int = 2
 
+var extradiff: int = 0
+
 var boss_defeated: bool = false
 
 # Called when the node enters the scene tree for the first time.

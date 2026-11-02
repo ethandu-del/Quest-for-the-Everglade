@@ -21,7 +21,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="boss_bullet" type="Area2D"]
+[node name="boss_bullet" type="Area2D" groups=["boss_projectile"]]
 scale = Vector2(2, 2)
 script = ExtResource("1_xox1s")
 

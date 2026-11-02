@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://uvppf0g3txab"]
+
+[ext_resource type="Script" path="res://Scripts/haunted_tree.gd" id="1_f0qr6"]
+[ext_resource type="Texture2D" uid="uid://dn0tq2120f83p" path="res://Sprites/Haunted_log_sprite.png" id="2_34el8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q4e8"]
+atlas = ExtResource("2_34el8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nou3"]
+atlas = ExtResource("2_34el8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77mm6"]
+atlas = ExtResource("2_34el8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg6y8"]
+atlas = ExtResource("2_34el8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1nlxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q4e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nou3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77mm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg6y8")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rykvc"]
+radius = 48.0104
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3u7kd"]
+radius = 74.0608
+
+[node name="haunted_tree" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_f0qr6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1nlxu")
+animation = &"move"
+frame_progress = 0.948291
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 17)
+shape = SubResource("CircleShape2D_rykvc")
+
+[node name="hit_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area"]
+position = Vector2(-1, 17)
+shape = SubResource("CircleShape2D_3u7kd")
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[connection signal="body_entered" from="hit_area" to="." method="_on_hit_area_body_entered"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

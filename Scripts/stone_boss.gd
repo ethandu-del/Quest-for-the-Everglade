@@ -12,10 +12,12 @@ var health = max_health
 
 const EnemySlime = preload("res://Prefabs/slime.tscn")
 const EnemyMushroom = preload("res://Prefabs/mushroom.tscn")
+const EnemyHaunted_Tree = preload("res://Prefabs/haunted_tree.tscn")
 
 const ENEMY_POOL = [
 	{"scene": EnemySlime, "cost": 10},
-	{"scene": EnemyMushroom, "cost": 25}
+	{"scene": EnemyMushroom, "cost": 25},
+	{"scene": EnemyHaunted_Tree, "cost": 35}
 ]
 
 @onready var enemy_spawn_area: CollisionShape2D = $mini_enemy_spawn_area/CollisionShape2D
@@ -35,8 +37,6 @@ func _physics_process(delta: float) -> void:
 	var remaining_ememies = get_tree().get_nodes_in_group("enemies")
 	if is_enemy_phase_going and is_enemy_phase and remaining_ememies.size() == 1:
 		enemy_phase()
-	
-	
 
 func take_damage():
 	if is_enemy_phase_going == false and not is_dead:
@@ -70,10 +70,8 @@ func attempt_to_shoot(target):
 		shoot_timer.start()
 		anim.play("attack_ranged")
 		
-	
 func _on_shoot_cooldown_timeout() -> void:
 	is_shooting_cooldown = false
-	
 	
 func spawn_bullet(target) -> void:
 	var bullet = BULLET.instantiate()

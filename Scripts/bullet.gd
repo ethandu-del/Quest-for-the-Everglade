@@ -49,4 +49,6 @@ func _on_area_entered(area: Area2D) -> void:
 		arrow_explosion.global_position = global_position
 		arrow_explosion.emitting = true
 		arrow_explosion.lifetime = randf_range(0.5, 0.7)
+		$/root/Game.add_child(arrow_explosion)
+		$/root/Game.move_child(arrow_explosion, 1)
 		queue_free()

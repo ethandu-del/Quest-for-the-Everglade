@@ -2,11 +2,13 @@ extends StaticBody2D
 
 const EnemySlime = preload("res://Prefabs/slime.tscn")
 const EnemyMushroom = preload("res://Prefabs/mushroom.tscn")
+const EnemyHauntedTree = preload("res://Prefabs/haunted_tree.tscn")
 const BOSS = preload("res://Prefabs/stone_boss.tscn")
 
 const ENEMY_POOL = [
 	{"scene": EnemySlime, "cost": 10},
-	{"scene": EnemyMushroom, "cost": 25}
+	{"scene": EnemyMushroom, "cost": 25},
+	{"scene": EnemyHauntedTree, "cost": 35}
 ]
 
 @onready var enemy_spawn_area: CollisionShape2D = $Enemy_spawn_area/Enemy_spawn_area_collision

@@ -1,12 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn33fbjgr1x4w"]
+[gd_scene load_steps=4 format=3 uid="uid://cn33fbjgr1x4w"]
 
-[ext_resource type="PackedScene" uid="uid://t0rpphcyqqxf" path="res://Backgrounds/background_open_start.tscn" id="1_wyukl"]
-[ext_resource type="PackedScene" uid="uid://duh1ehlii818k" path="res://Prefabs/player.tscn" id="2_adf5j"]
+[ext_resource type="Script" path="res://Scripts/tutorial.gd" id="1_0wxw0"]
+[ext_resource type="Texture2D" uid="uid://dyktju4u1eb46" path="res://Sprites/Menu_background.png" id="2_4dwfy"]
+[ext_resource type="FontFile" uid="uid://d02mvqgofim7" path="res://Fonts/Cairopixel.otf" id="3_go4tg"]
 
 [node name="tutorial" type="Node2D"]
+script = ExtResource("1_0wxw0")
 
-[node name="background_open_start" parent="." instance=ExtResource("1_wyukl")]
-position = Vector2(580, 326)
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(577, 319)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_4dwfy")
 
-[node name="player" parent="." instance=ExtResource("2_adf5j")]
-position = Vector2(600, 510)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = -320.0
+offset_top = 10.0
+offset_right = 715.0
+offset_bottom = 322.0
+scale = Vector2(1.75, 1.75)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_go4tg")
+text = "Tutorial:
+Your Quest is to make your way through the fabled Everglade
+ and defeat the dreaded stone monster that has taken over the forest, 
+corrupting it and bringing with it unwanted enemies which have taken over the once 
+prosperous glade.
+
+You will make use of your handy bow and arrow to navigate the clearings in the forest,
+defeating any monsters that may come in your way, to reach and defeat the evil stone monster.
+You will also use your stamina to escape in tricky situations by sprinting away.
+
+Be careful however, as even though you are an elf, you are still mortal and by undertaking this
+quest you are putting yourself at risk for the greater good of the Everglade.
+
+Thank you young adventurer, may the spirits of the forest be with you on this epic quest.
+
+
+"
+horizontal_alignment = 1
+
+[node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_go4tg")
+text = "Return to Main Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
